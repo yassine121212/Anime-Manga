@@ -1,10 +1,13 @@
 import Image from "next/image";
 import React from "react";
 import { MenuData } from "../lib/fetchMenuData";
+import TopManga from "./TopManga";
 const Menu = () => {
   return (
     <div className="flex justify-between">
-      <div className="bg-red-700 w-1/3 h-screen md:block hidden"></div>
+      <div className="bg-red-700 w-1/3 h-screen md:block hidden">
+        <TopManga/>
+      </div>
       <div className="flex-1 flex flex-col ">
         <div className="px-2 pb-6 cursor-pointer   relative group ">
           {MenuData.data[0].relationships.map(
