@@ -6,7 +6,7 @@ const Menu = () => {
     <div className="flex justify-between">
       <div className="bg-red-700 w-1/3 h-screen md:block hidden"></div>
       <div className="flex-1 flex flex-col ">
-        <div className="px-2 pb-6  relative  ">
+        <div className="px-2 pb-6 cursor-pointer   relative group ">
           {MenuData.data[0].relationships.map(
             (rele) => (
               <div className="">
@@ -21,21 +21,43 @@ const Menu = () => {
               </div>
             )
           )}
-          <div className=" absolute  flex flex-col top-0 h-[97%] w-[98.5%]  backdrop-blur-md   group-hover:inline transition-transform duration-400 ease-in-out">
-            <h3 class="text-4xl p-24 text-white  font-bold blur-none   border-t-2 border-violet-300  w-full">
-              {
-                MenuData.data[0].attributes.title
-                  .en
-              }
-            </h3>
-            { MenuData.data[0].relationships.map(
-              (rele) =>
-                rele.type === "author" && (
-                  <p className="text-white px-1 text-sm">
-                    By {rele.attributes.name}
-                  </p>
-                )
-            )}
+          <div className="hidden group-hover:flex group-hover:flex-col justify-between absolute  top-0 h-[97%] w-[98.5%]  backdrop-blur-lg   transition-transform duration-400 ease-in-out">
+            <div className="flex w-full">
+              <h3 class="text-4xl px-6 py-14  text-[#330054] font-extrabold blur-none w-full">
+                {
+                  MenuData.data[0].attributes
+                    .title.en
+                }
+              </h3>
+              {MenuData.data[0].relationships.map(
+                (rele) =>
+                  rele.type === "author" && (
+                    <p className="text-[#330054] text-3xl py-14 px-6 font-extrabold">
+                      By
+                      <span className="px-2 ">
+                        {rele.attributes.name}
+                      </span>
+                    </p>
+                  )
+              )}
+            </div>
+            <div className="text-white font-bold px-2 py-4 text-2xl bg-[#55226683] shadow-2xl  transition-transform duration-100 ease-in-out">
+              <div className="flex justify-between w-full bg-[#330054] px-4 py-3 border-l-8 border-white rounded-lg">
+                <span className="">
+                  Description
+                </span>
+                <span>{MenuData.data[0].attributes.year}</span>
+              </div>
+              <div>
+                <p className="text-sm shadow-2xl  px-4 py-2">
+                  {MenuData.data[0].attributes.description.en.slice(
+                    0,
+                    1000
+                  )}
+                  ......<span>Read More</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
